@@ -17,9 +17,9 @@ def prepare(root_data_folder, kind, size):
     dataset_url = "https://sisap-23-challenge.s3.amazonaws.com/SISAP23-Challenge"
     data_file_dict = {
         "dataset_orig": [os.path.join(root_data_folder, 'Dataset', 'Dataset'), f"laion2B-en-clip768v2-n={size}.h5"],
-        "dataset": [os.path.join(root_data_folder, 'Dataset', 'Dataset'), f"laion2B-en-{kind}-n={size}.h5"],
-        "query_orig": [os.path.join(root_data_folder, 'Dataset', 'Query'), f"public-queries-10k-clip768v2.h5"],
-        "query": [os.path.join(root_data_folder, 'Dataset', 'Query'), f"public-queries-10k-{kind}.h5"]
+        "dataset": [os.path.join(root_data_folder, 'Dataset', 'Dataset'), f"laion2B-en-clip768v2-n={size}.h5"],
+        "query_orig": [os.path.join(root_data_folder, 'Dataset', 'Query'), f"private-queries-gold-10k-clip768v2.h5"],
+        "query": [os.path.join(root_data_folder, 'Dataset', 'Query'), f"private-queries-gold-10k-clip768v2.h5"]
     }
 
     for version, file_spec in data_file_dict.items():
@@ -119,4 +119,4 @@ if __name__ == "__main__":
     assert args.size in ["100K", "300K", "10M", "30M", "100M"]
 
     root_data_folder = "Similarity_search"
-    run(root_data_folder, "pca96v2", "pca96", size=args.size, k=args.k, buildindex=args.buildindex)
+    run(root_data_folder, "clip768v2", "emb", size=args.size, k=args.k, buildindex=args.buildindex)
